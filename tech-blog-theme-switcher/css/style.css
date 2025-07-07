@@ -1,0 +1,897 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS Variables for Theming */
+:root {
+    /* Blue-to-Aqua Light Theme */
+    --bg-color: #e0f7fa; /* Light cyan/aqua */
+    --text-color: #004d40; /* Dark teal for text */
+    --header-bg: #00796b; /* Teal */
+    --header-text: #ffffff;
+    --header-border: #00bcd4; /* Cyan */
+    --accent-color: #00bcd4; /* Cyan */
+    --accent-hover-color: #0097a7; /* Darker Cyan */
+    --card-bg: #ffffff;
+    --card-shadow: rgba(0, 77, 64, 0.1); /* Shadow based on dark teal */
+    --meta-text: #00796b; /* Teal for meta text */
+    --menu-dropdown-bg: #006064; /* Darker cyan/teal */
+    --menu-dropdown-border: #004d40; /* Dark teal */
+    --link-color: #00796b; /* Teal for links */
+    --link-hover-text-decoration: underline;
+    --footer-bg: #004d40; /* Dark teal for footer */
+    --footer-text: #e0f7fa; /* Light cyan/aqua text on footer */
+    --menu-toggle-icon-color: #ffffff;
+    --theme-switcher-bg: #004d40; /* Dark Teal */
+    --theme-switcher-text: #ffffff;
+    --theme-switcher-hover-bg: #006064; /* Slightly lighter teal */
+
+    /* General styling for readability with new theme */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Updated font */
+    line-height: 1.7; /* Slightly increased line height */
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    /* Complementary Dark Theme for Blue-to-Aqua */
+    --bg-color: #001f24; /* Very dark desaturated cyan/blue */
+    --text-color: #b2dfdb; /* Light teal/aqua for text */
+    --header-bg: #003840; /* Dark teal/blue */
+    --header-text: #e0f7fa; /* Light cyan/aqua */
+    --header-border: #4dd0e1; /* Lighter aqua/cyan for borders */
+    --accent-color: #4dd0e1; /* Lighter aqua/cyan for accents */
+    --accent-hover-color: #80deea; /* Even lighter aqua/cyan */
+    --card-bg: #002a30; /* Darker teal/blue, slightly lighter than main bg */
+    --card-shadow: rgba(77, 208, 225, 0.1); /* Shadow based on accent */
+    --meta-text: #80deea; /* Lighter aqua for meta */
+    --menu-dropdown-bg: #00434d;
+    --menu-dropdown-border: #005c69;
+    --link-color: #4dd0e1; /* Lighter aqua/cyan for links */
+    --footer-bg: #00181c; /* Very dark footer */
+    --footer-text: #b2dfdb; /* Light teal/aqua text */
+    --menu-toggle-icon-color: #e0f7fa;
+    --theme-switcher-bg: #00434d;
+    --theme-switcher-text: #e0f7fa;
+    --theme-switcher-hover-bg: #005c69;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden; /* Clear floats */
+}
+
+/* Header */
+header {
+    background: var(--header-bg);
+    color: var(--header-text);
+    padding: 1rem 0;
+    border-bottom: var(--header-border) 3px solid;
+    position: relative; /* For positioning theme switcher */
+}
+
+header .container { /* Ensure container in header handles flex */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin-top: 0; /* Reset margin for flex alignment */
+    /* float: left; removed for flex */
+    margin-right: auto; /* Pushes other items (controls, nav) to the right */
+}
+
+.header-controls {
+    /* margin-left: auto; /* Pushes it to the right before nav */
+    padding-right: 10px; /* Space from nav or edge */
+    /* Order can be controlled by flex order property if needed */
+    display: flex; /* Ensure items inside align well */
+    align-items: center;
+}
+
+.profile-icon {
+    color: var(--header-text);
+    text-decoration: none;
+    font-size: 1.5rem; /* Adjust size as needed */
+    margin-left: 10px; /* Space from theme switcher */
+    line-height: 1; /* Align icon better vertically */
+}
+
+.profile-icon:hover {
+    color: var(--accent-color);
+}
+
+
+#theme-switcher {
+    background: var(--theme-switcher-bg);
+    color: var(--theme-switcher-text);
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+#theme-switcher:hover {
+    background: var(--theme-switcher-hover-bg);
+}
+
+
+header nav {
+    /* float: right; removed for flex */
+}
+
+header ul.nav-menu {
+    list-style: none;
+}
+
+header ul.nav-menu li {
+    display: inline;
+    margin-left: 20px;
+}
+
+header a {
+    color: var(--header-text);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+header a:hover {
+    color: var(--accent-color);
+}
+
+.menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    background: none;
+    border: none;
+    color: var(--menu-toggle-icon-color);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* Ensure it's above other elements if nav is absolute */
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--menu-toggle-icon-color);
+    margin: 5px auto; /* Centered the spans */
+    transition: all 0.3s ease-in-out; /* Added all for smoother transform */
+}
+
+
+/* Main Content Area */
+main.container {
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow sidebar to wrap on smaller screens */
+}
+
+.blog-posts {
+    flex: 3; /* Takes 3/4 of the space */
+    margin-right: 20px;
+}
+
+.blog-post {
+    background: var(--card-bg);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px var(--card-shadow);
+}
+
+.blog-post img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.blog-post h2 a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.blog-post h2 a:hover {
+    color: var(--accent-color);
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: var(--meta-text);
+    margin-bottom: 10px;
+}
+
+.read-more {
+    display: inline-block;
+    background: var(--accent-color);
+    color: var(--header-text); /* Assuming accent buttons have light text */
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.read-more:hover {
+    background: var(--accent-hover-color);
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1; /* Takes 1/4 of the space */
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px var(--card-shadow);
+    height: fit-content; /* So it doesn't stretch unnecessarily */
+}
+
+.sidebar h3 {
+    margin-bottom: 10px;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--menu-dropdown-border); /* Use a suitable variable */
+    padding-bottom: 5px;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.sidebar ul li {
+    margin-bottom: 8px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+.sidebar ul li a:hover {
+    text-decoration: var(--link-hover-text-decoration);
+}
+
+/* Footer */
+footer {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header .container {
+        flex-wrap: wrap; /* Allow items to wrap */
+        justify-content: center; /* Center items when wrapped */
+    }
+    header h1 {
+        /* float: none; */ /* Already handled by flex */
+        text-align: center;
+        margin-bottom: 10px;
+        width: 100%; /* Take full width to center properly */
+    }
+    .header-controls { /* Adjust theme switcher for mobile */
+        order: 2; /* Place it after H1 but before Nav toggle potentially */
+        margin: 0 auto 10px auto; /* Center it and add some margin */
+        /* position: static; */
+        /* transform: none; */
+        padding-right: 0;
+    }
+
+    header nav {
+        /* float: none; */ /* Already handled by flex */
+        text-align: center;
+        order: 3; /* Ensure nav is after h1 and controls */
+        width: 100%; /* Make nav take full width for centering menu button */
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger icon */
+        /* position: absolute; */ /* Relative to nav now */
+        /* top: 15px; */ /* Adjust if needed */
+        /* right: 20px; */ /* Adjust if needed */
+        margin: 0 auto; /* Center the toggle if nav is full width */
+        position: static; /* If nav is full width and text-align center */
+    }
+    /* If you want the menu toggle on the side of H1 on mobile, more complex flex/grid needed for header .container items */
+
+
+    header ul.nav-menu {
+        display: none; /* Hide nav links by default */
+        flex-direction: column;
+        width: 100%;
+        background: var(--menu-dropdown-bg);
+        position: absolute;
+        top: 100%; /* Position below the header content */
+        left: 0;
+        padding: 0;
+        z-index: 1000; /* Ensure it's above main content */
+    }
+
+    header ul.nav-menu.active {
+        display: flex; /* Show when active */
+    }
+
+    header ul.nav-menu li {
+        display: block;
+        text-align: center;
+        margin: 0;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--menu-dropdown-border);
+    }
+    header ul.nav-menu li:last-child {
+        border-bottom: none;
+    }
+
+    header ul.nav-menu li a {
+        display: block;
+    }
+
+    main.container {
+        flex-direction: column;
+    }
+
+    .blog-posts {
+        margin-right: 0;
+        margin-bottom: 20px; /* Space between posts and sidebar */
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .blog-post h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Hamburger Icon Animation to X */
+.menu-toggle.is-active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.is-active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Page Specific Content Styles */
+.page-content {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px var(--card-shadow);
+    margin-bottom: 20px;
+}
+
+.page-content h2 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+}
+
+.page-content p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.page-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+.page-content ul li a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+.page-content ul li a:hover {
+    text-decoration: var(--link-hover-text-decoration);
+}
+
+/* Category List on categories.html */
+.category-list {
+    list-style: none;
+    padding: 0;
+}
+.category-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--menu-dropdown-border);
+}
+.category-list li:last-child {
+    border-bottom: none;
+}
+
+
+/* Contact Form Styles */
+.contact-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--menu-dropdown-border);
+    border-radius: 4px;
+    background-color: var(--bg-color); /* Input background */
+    color: var(--text-color); /* Input text color */
+    font-size: 1rem;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px var(--accent-color-transparent, rgba(0, 188, 212, 0.3)); /* Fallback if variable not defined */
+}
+
+.btn-submit {
+    display: inline-block;
+    background: var(--accent-color);
+    color: var(--header-text); /* Assuming accent buttons have light text like header */
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: var(--accent-hover-color);
+}
+
+/* Single Post Content Styles */
+.single-post-content h2 {
+    font-size: 2.2rem; /* Larger title for single post */
+    margin-bottom: 10px;
+    border-bottom: none; /* Remove default border from .page-content h2 */
+    padding-bottom: 0;
+}
+
+.single-post-content .post-meta {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.single-post-content .post-meta a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+.single-post-content .post-meta a:hover {
+    text-decoration: underline;
+}
+
+.single-post-content img {
+    margin-bottom: 25px; /* More space after main image */
+}
+
+.single-post-content h3 {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.single-post-content p {
+    font-size: 1.05rem; /* Slightly larger paragraph text for readability */
+    margin-bottom: 20px; /* More spacing between paragraphs */
+}
+
+/* Comments Section Styles */
+.comments-section {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: var(--card-bg);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px var(--card-shadow);
+}
+
+.comments-section h3 { /* Overall "Comments (X)" title */
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+}
+
+.comment-form h4 { /* "Leave a Comment" title */
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+/* Using existing .form-group and .btn-submit styles for the comment form */
+.comment-form {
+    margin-bottom: 30px;
+}
+
+.comments-list .comment {
+    padding: 15px;
+    border: 1px solid var(--menu-dropdown-border);
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background-color: var(--bg-color); /* Slightly different background for each comment */
+}
+
+.comments-list .comment:last-child {
+    margin-bottom: 0;
+}
+
+.comment-author {
+    font-size: 0.9rem;
+    color: var(--meta-text);
+    margin-bottom: 8px;
+}
+
+.comment-author strong {
+    color: var(--text-color);
+}
+
+.comment-author time {
+    font-style: italic;
+}
+
+.comments-list .comment p:last-of-type { /* The actual comment text */
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+/* Profile Page Styles */
+.profile-page h2 {
+    margin-bottom: 25px;
+}
+
+.profile-details {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    align-items: flex-start;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed var(--menu-dropdown-border);
+}
+
+.profile-avatar {
+    flex-basis: 150px; /* Fixed size for avatar container */
+    margin-right: 30px;
+    margin-bottom: 20px; /* For smaller screens when info wraps */
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%; /* Circular avatar */
+    border: 3px solid var(--accent-color);
+}
+
+.profile-info {
+    flex: 1; /* Takes remaining space */
+}
+
+.profile-info h3 { /* Username */
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.profile-info p {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.btn-edit-profile {
+    display: inline-block;
+    background: var(--accent-color);
+    color: var(--header-text);
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit-profile:hover {
+    background: var(--accent-hover-color);
+}
+
+.profile-activity h4 {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.profile-activity ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-activity ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--menu-dropdown-border);
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.profile-activity ul li:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 600px) {
+    .profile-details {
+        flex-direction: column;
+        align-items: center; /* Center items when stacked */
+        text-align: center;
+    }
+    .profile-avatar {
+        margin-right: 0; /* Remove right margin when stacked */
+    }
+    .profile-info {
+        width: 100%; /* Ensure info takes full width */
+    }
+}
+
+/* Sidebar list styling */
+.sidebar ul { /* General sidebar list styling */
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+.sidebar ul li {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+.sidebar ul li a {
+    text-decoration: none;
+    color: var(--link-color);
+}
+.sidebar ul li a:hover {
+    text-decoration: var(--link-hover-text-decoration);
+}
+.category-list-sidebar li, .recent-posts-sidebar li {
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--menu-dropdown-border);
+}
+.category-list-sidebar li:last-child, .recent-posts-sidebar li:last-child {
+    border-bottom: none;
+}
+
+
+/* Chat Page Styles */
+.chat-page h2 {
+    margin-bottom: 20px;
+}
+
+.chat-container {
+    display: flex;
+    height: calc(100vh - 250px); /* Adjust height based on header/footer/padding */
+    min-height: 400px; /* Minimum height for the chat interface */
+    border: 1px solid var(--menu-dropdown-border);
+    border-radius: 5px;
+    overflow: hidden; /* Contains child elements */
+    background-color: var(--bg-color); /* Chat container background */
+}
+
+.chat-sidebar {
+    flex-basis: 200px;
+    background-color: var(--card-bg); /* Sidebar slightly different from chat messages bg */
+    padding: 15px;
+    border-right: 1px solid var(--menu-dropdown-border);
+    overflow-y: auto;
+}
+
+.chat-sidebar h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+}
+
+.user-list .user-item {
+    padding: 8px 0;
+    cursor: pointer;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+.user-list .user-item:hover {
+    color: var(--accent-color);
+}
+.user-list .user-item span { /* Online status indicator */
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #4caf50; /* Green for online */
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.user-list .user-item.inactive-user span {
+    background-color: #bbb; /* Grey for inactive/away */
+}
+
+
+.chat-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: var(--bg-color); /* Main chat message area background */
+}
+
+.message {
+    margin-bottom: 15px;
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 15px;
+}
+
+.message p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.message-sender {
+    font-weight: bold;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+    color: var(--text-color);
+}
+
+.message-text {
+    font-size: 0.95rem;
+}
+
+.message-time {
+    font-size: 0.75rem;
+    color: var(--meta-text);
+    text-align: right;
+    margin-top: 5px;
+}
+
+.message.sent {
+    background-color: var(--accent-color);
+    color: var(--header-text); /* Text on sent messages */
+    margin-left: auto; /* Align sent messages to the right */
+    border-bottom-right-radius: 5px; /* Bubble tail */
+}
+.message.sent .message-sender,
+.message.sent .message-time {
+    color: var(--header-text);
+    opacity: 0.8;
+}
+
+
+.message.received {
+    background-color: var(--card-bg); /* Received messages different bg */
+    color: var(--text-color); /* Text on received messages */
+    margin-right: auto; /* Align received messages to the left */
+    border: 1px solid var(--menu-dropdown-border);
+    border-bottom-left-radius: 5px; /* Bubble tail */
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid var(--menu-dropdown-border);
+    background-color: var(--card-bg);
+}
+
+#chat-message-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--menu-dropdown-border);
+    border-radius: 4px;
+    margin-right: 10px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+#chat-message-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.btn-send-message {
+    background: var(--accent-color);
+    color: var(--header-text);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+.btn-send-message:hover {
+    background: var(--accent-hover-color);
+}
+
+/* Responsive Chat */
+@media (max-width: 768px) {
+    .chat-container {
+        flex-direction: column;
+        height: calc(100vh - 200px); /* Adjust for smaller screens */
+    }
+    .chat-sidebar {
+        flex-basis: auto; /* Allow sidebar to shrink */
+        max-height: 150px; /* Limit height and make it scrollable if many users */
+        border-right: none;
+        border-bottom: 1px solid var(--menu-dropdown-border);
+    }
+    .chat-sidebar h4 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+    .user-list .user-item {
+        padding: 6px 0;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .message {
+        max-width: 85%; /* Allow messages to take more width on small screens */
+    }
+    .chat-sidebar {
+        max-height: 120px;
+    }
+}

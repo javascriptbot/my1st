@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Blog</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tech Updates</h1>
+            <div class="header-controls">
+                <button id="theme-switcher" aria-label="Toggle light/dark theme">🌙</button>
+                <a href="profile.html" aria-label="User Profile" class="profile-icon">👤</a>
+            </div>
+            <nav>
+                <button class="menu-toggle" aria-label="Open navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="latest.html">Latest</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="chat.html">Chat</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="blog-posts">
+            <!-- Blog posts will be dynamically added here or manually placed -->
+            <article class="blog-post">
+                <h2><a href="single-post.html">Exploring the Next Generation of AI</a></h2>
+                <p class="post-meta">Published on <time datetime="2024-05-20">May 20, 2024</time> by Admin</p>
+                <img src="https://via.placeholder.com/800x400?text=AI+Advancements" alt="Placeholder image for AI advancements">
+                <p>Artificial Intelligence (AI) is rapidly transforming our world, from everyday applications to groundbreaking scientific research. This week, OpenAI announced its latest model, GPT-5, boasting significantly improved contextual understanding and reasoning capabilities. Early tests show it excels in complex problem-solving and creative text generation, promising new frontiers for AI-assisted tools.</p>
+                <a href="single-post.html" class="read-more">Read More</a>
+            </article>
+
+            <article class="blog-post">
+                <h2><a href="single-post.html">Quantum Computing Leaps Forward with New Qubit Design</a></h2>
+                <p class="post-meta">Published on <time datetime="2024-05-18">May 18, 2024</time> by Admin</p>
+                <img src="https://via.placeholder.com/800x400?text=Quantum+Qubit" alt="Placeholder image for Quantum Qubit">
+                <p>Researchers at QuantumLeap Corp. have unveiled a novel qubit architecture that demonstrates significantly longer coherence times and lower error rates. This breakthrough could accelerate the development of fault-tolerant quantum computers, bringing us closer to harnessing their immense processing power for challenges in drug discovery, materials science, and complex system optimization. The new design utilizes silicon-based materials, potentially offering better scalability.</p>
+                <a href="single-post.html" class="read-more">Read More</a>
+            </article>
+
+            <article class="blog-post">
+                <h2><a href="single-post.html">Cybersecurity Alert: Novel Phishing Scam Targets Cloud Users</a></h2>
+                <p class="post-meta">Published on <time datetime="2024-05-16">May 16, 2024</time> by Admin</p>
+                <img src="https://via.placeholder.com/800x400?text=Cybersecurity+Alert" alt="Placeholder image for Cybersecurity Alert">
+                <p>A sophisticated new phishing campaign is actively targeting users of major cloud storage services. The attackers use highly convincing fake login pages and social engineering tactics to steal credentials. Security experts advise users to enable multi-factor authentication, be wary of unsolicited emails requesting login information, and always verify website URLs before entering credentials. Stay vigilant and protect your data.</p>
+                <a href="single-post.html" class="read-more">Read More</a>
+            </article>
+        </section>
+
+        <aside class="sidebar">
+            <h3>Categories</h3>
+            <ul class="category-list-sidebar">
+                <li><a href="categories.html#ai">Artificial Intelligence</a></li>
+                <li><a href="categories.html#cybersecurity">Cybersecurity</a></li>
+                <li><a href="categories.html#software">Software Development</a></li>
+                <li><a href="categories.html#gadgets">Gadgets & Hardware</a></li>
+                <li><a href="categories.html#quantum">Quantum Computing</a></li>
+            </ul>
+            <h3>Recent Posts</h3>
+            <ul class="recent-posts-sidebar">
+                <li><a href="single-post.html">Exploring the Next Generation of AI</a></li>
+                <li><a href="single-post.html">Quantum Computing Leaps Forward</a></li>
+                <li><a href="single-post.html">Cybersecurity Alert: Cloud Phishing</a></li>
+            </ul>
+        </aside>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tech Blog. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
