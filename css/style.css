@@ -1,0 +1,267 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden; /* Clear floats */
+}
+
+/* Header */
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    border-bottom: #0779e4 3px solid;
+}
+
+header h1 {
+    float: left;
+    margin-top: 5px;
+}
+
+header nav {
+    float: right;
+}
+
+header ul.nav-menu {
+    list-style: none;
+}
+
+header ul.nav-menu li {
+    display: inline;
+    margin-left: 20px;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+header a:hover {
+    color: #0779e4;
+}
+
+.menu-toggle {
+    display: none; /* Hidden by default, shown on mobile */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px auto; /* Centered the spans */
+    transition: all 0.3s ease-in-out; /* Added all for smoother transform */
+}
+
+
+/* Main Content Area */
+main.container {
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow sidebar to wrap on smaller screens */
+}
+
+.blog-posts {
+    flex: 3; /* Takes 3/4 of the space */
+    margin-right: 20px;
+}
+
+.blog-post {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.blog-post img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.blog-post h2 a {
+    text-decoration: none;
+    color: #333;
+}
+
+.blog-post h2 a:hover {
+    color: #0779e4;
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.read-more {
+    display: inline-block;
+    background: #0779e4;
+    color: #fff;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.read-more:hover {
+    background: #0056b3;
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1; /* Takes 1/4 of the space */
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    height: fit-content; /* So it doesn't stretch unnecessarily */
+}
+
+.sidebar h3 {
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.sidebar ul li {
+    margin-bottom: 8px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #0779e4;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        float: none;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    header nav {
+        float: none;
+        text-align: center;
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger icon */
+        position: absolute;
+        top: 15px;
+        right: 20px;
+    }
+
+    header ul.nav-menu {
+        display: none; /* Hide nav links by default */
+        flex-direction: column;
+        width: 100%;
+        background: #444; /* Slightly darker background for dropdown */
+        position: absolute;
+        top: 60px; /* Adjust based on header height */
+        left: 0;
+        padding: 0;
+    }
+
+    header ul.nav-menu.active {
+        display: flex; /* Show when active */
+    }
+
+    header ul.nav-menu li {
+        display: block;
+        text-align: center;
+        margin: 0;
+        padding: 15px 0;
+        border-bottom: 1px solid #555;
+    }
+    header ul.nav-menu li:last-child {
+        border-bottom: none;
+    }
+
+    header ul.nav-menu li a {
+        display: block;
+    }
+
+    main.container {
+        flex-direction: column;
+    }
+
+    .blog-posts {
+        margin-right: 0;
+        margin-bottom: 20px; /* Space between posts and sidebar */
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .blog-post h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Hamburger Icon Animation to X */
+.menu-toggle.is-active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.is-active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
