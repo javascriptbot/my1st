@@ -1,0 +1,917 @@
+/* General Body Styles */
+:root {
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --primary-color: #007bff;
+    --secondary-color: #333;
+    --header-bg: #333;
+    --header-text: #fff;
+    --header-border: #007bff;
+    --widget-bg: #f9f9f9;
+    --widget-border: #eee;
+    --widget-box-shadow: rgba(0,0,0,0.1);
+    --card-bg: #fff;
+    --card-border: #ddd;
+    --card-box-shadow: rgba(0,0,0,0.1);
+    --button-bg: #007bff;
+    --button-text: #fff;
+    --button-hover-bg: #0056b3;
+    --section-alt-bg: #e9ecef; /* For sections like game, contact */
+    --footer-bg: #333;
+    --footer-text: #fff;
+    --link-color: #007bff;
+    --link-hover-color: #0056b3;
+
+    /* Specifics */
+    --hero-overlay-bg: rgba(0, 0, 0, 0.5);
+    --hero-text-color: #fff;
+    --clock-text-color: #333;
+    --timer-input-border: #ccc;
+    --calendar-header-bg: #007bff;
+    --calendar-header-text: white;
+    --calendar-day-border: #ddd;
+    --calendar-current-day-bg: #ffc107;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --primary-color: #0091ea; /* Brighter blue for dark mode */
+    --secondary-color: #bbb;
+    --header-bg: #1e1e1e;
+    --header-text: #e0e0e0;
+    --header-border: #0091ea;
+    --widget-bg: #2a2a2a;
+    --widget-border: #3a3a3a;
+    --widget-box-shadow: rgba(0,0,0,0.3);
+    --card-bg: #1e1e1e;
+    --card-border: #3a3a3a;
+    --card-box-shadow: rgba(0,0,0,0.3);
+    --button-bg: #0091ea;
+    --button-text: #fff;
+    --button-hover-bg: #0077c2;
+    --section-alt-bg: #222;
+    --footer-bg: #1e1e1e;
+    --footer-text: #e0e0e0;
+    --link-color: #0091ea;
+    --link-hover-color: #4dabf5;
+
+    /* Specifics */
+    --hero-overlay-bg: rgba(0, 0, 0, 0.6);
+    --hero-text-color: #fff;
+    --clock-text-color: #e0e0e0;
+    --timer-input-border: #555;
+    --calendar-header-bg: #0091ea;
+    --calendar-header-text: white;
+    --calendar-day-border: #444;
+    --calendar-current-day-bg: #ffa000;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    color: var(--text-color);
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Header & Navigation */
+header {
+    background: var(--header-bg);
+    color: var(--header-text);
+    padding: 1rem 0;
+    border-bottom: var(--header-border) 3px solid;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+header .logo a {
+    color: var(--header-text);
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center; /* Align theme toggle button vertically */
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: var(--header-text);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header nav ul li a:hover,
+header nav ul li a.active {
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    background: none;
+    border: 1px solid var(--header-text); /* Use a variable that contrasts with header-bg */
+    color: var(--header-text); /* Use a variable that contrasts with header-bg */
+    font-size: 1.2rem;
+    padding: 5px 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.theme-toggle-btn:hover {
+    background-color: var(--header-text); /* Invert colors on hover */
+    color: var(--header-bg);
+}
+
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--header-bg);
+    min-width: 220px;
+    box-shadow: 0px 8px 16px 0px var(--widget-box-shadow);
+    z-index: 1;
+    border-top: var(--primary-color) 3px solid;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dropdown-content a {
+    color: var(--header-text);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--primary-color);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Hero Section */
+#hero {
+    background: url('images/hero-bg.jpg') no-repeat center center/cover;
+    color: var(--hero-text-color);
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative; /* For overlay */
+}
+
+#hero::before { /* Overlay */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--hero-overlay-bg);
+    transition: background-color 0.3s ease;
+}
+
+.hero-content {
+    position: relative; /* To be above overlay */
+    z-index: 1;
+}
+
+#hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--hero-text-color);
+}
+
+#hero p {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    /* color: var(--hero-text-color); Implicitly inherited, but can be explicit */
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--button-bg);
+    color: var(--button-text);
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    background: var(--button-hover-bg);
+    text-decoration: none;
+}
+
+/* Widgets Section */
+#widgets {
+    padding: 2rem 0;
+    background: var(--card-bg); /* Using card-bg for sections with distinct inner elements */
+    transition: background-color 0.3s ease;
+}
+
+#widgets h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.widget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.widget {
+    background: var(--widget-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--widget-box-shadow);
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.widget h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+#clock, #timer {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: var(--clock-text-color);
+}
+
+#timer-input {
+    padding: 8px;
+    margin-right: 5px;
+    border: 1px solid var(--timer-input-border);
+    border-radius: 4px;
+    width: 100px;
+    background-color: var(--bg-color); /* Match page background for inputs */
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+#start-timer { /* Specific button, might keep its own colors or use variables */
+    padding: 8px 15px;
+    background-color: #28a745; /* Green for go */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+[data-theme="dark"] #start-timer {
+    background-color: #228B22; /* Darker green for dark mode */
+}
+
+#start-timer:hover {
+    background-color: #218838;
+}
+[data-theme="dark"] #start-timer:hover {
+    background-color: #1A6A1A;
+}
+
+#calendar {
+    min-height: 200px;
+    border: 1px solid var(--widget-border);
+    padding: 10px;
+    background: var(--widget-bg); /* Calendar is like a widget */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+#calendar table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+#calendar th, #calendar td {
+    border: 1px solid var(--calendar-day-border);
+    padding: 8px;
+    text-align: center;
+    transition: border-color 0.3s ease;
+}
+#calendar th {
+    background-color: var(--calendar-header-bg);
+    color: var(--calendar-header-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+#calendar .current-day {
+    background-color: var(--calendar-current-day-bg);
+    font-weight: bold;
+    color: #333; /* Ensure text visibility on yellow */
+    transition: background-color 0.3s ease;
+}
+[data-theme="dark"] #calendar .current-day {
+    color: #111; /* Darker text for dark yellow */
+}
+
+#calendar-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+}
+#calendar-header button {
+    background: var(--primary-color);
+    color: var(--button-text);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+#calendar-header button:hover {
+    background: var(--button-hover-bg);
+}
+
+
+/* Game Section */
+#game-section {
+    padding: 2rem 0;
+    background: var(--section-alt-bg);
+    transition: background-color 0.3s ease;
+}
+
+#game-section .container {
+    text-align: center;
+}
+
+#game-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#guess-input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid var(--timer-input-border); /* Reuse timer input style */
+    border-radius: 5px;
+    width: 150px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+#guess-button { /* Specific button, might keep its own colors or use variables */
+    padding: 10px 20px;
+    background-color: #17a2b8; /* Teal */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+[data-theme="dark"] #guess-button {
+    background-color: #1394a8;
+}
+
+#guess-button:hover {
+    background-color: #138496;
+}
+[data-theme="dark"] #guess-button:hover {
+    background-color: #107382;
+}
+
+
+#game-message {
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* Blog Section */
+#blog {
+    padding: 2rem 0;
+    /* background: var(--bg-color); Already inherits from body, explicit if different */
+}
+
+#blog h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.blog-post-summary {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px var(--card-box-shadow);
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-post-summary:hover {
+    transform: translateY(-5px);
+}
+
+.blog-post-summary img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.blog-post-summary h3 {
+    font-size: 1.5rem;
+    margin: 1rem;
+    color: var(--primary-color);
+}
+
+.blog-post-summary p {
+    margin: 0 1rem 1rem 1rem;
+    font-size: 0.95rem;
+    color: var(--text-color); /* Using main text color, possibly opacity for subtlety */
+    opacity: 0.9;
+}
+
+.read-more {
+    display: inline-block;
+    margin: 0 1rem 1rem 1rem;
+    color: var(--link-color);
+    font-weight: bold;
+}
+.read-more:hover {
+    color: var(--link-hover-color);
+}
+
+
+.all-posts-link {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Services Section */
+#services {
+    padding: 2rem 0;
+    background: var(--card-bg); /* Section with distinct inner elements */
+    transition: background-color 0.3s ease;
+}
+
+#services h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.service-item {
+    padding: 20px;
+    /* background: var(--widget-bg); if items need more distinction */
+    /* border-radius: 8px; */
+}
+
+.service-item img {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
+    background-color: var(--section-alt-bg); /* Placeholder bg, use a subtle color */
+    padding:10px;
+    transition: background-color 0.3s ease;
+}
+
+.service-item h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+/* Contact Section */
+#contact {
+    padding: 2rem 0;
+    background: var(--section-alt-bg);
+    transition: background-color 0.3s ease;
+}
+
+#contact h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#contact p {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+#contact-form {
+    max-width: 600px;
+    margin: auto;
+    display: grid;
+    gap: 15px;
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--timer-input-border); /* Re-use timer input border or a specific form input border */
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: var(--bg-color); /* Input background should match page bg */
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+#contact-form input[type="text"]::placeholder,
+#contact-form input[type="email"]::placeholder,
+#contact-form textarea::placeholder {
+    color: var(--secondary-color); /* For placeholder text */
+    opacity: 0.7;
+}
+
+
+#contact-form textarea {
+    resize: vertical;
+}
+
+#contact-form button[type="submit"] { /* This is a .cta-button, should inherit styles */
+    width: auto;
+    justify-self: center;
+}
+
+/* Footer */
+footer {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+footer p {
+    margin: 0.5rem 0;
+}
+
+.footer-links a {
+    color: var(--link-color); /* Use general link color or a specific footer link color */
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+/* Make footer links brighter in dark mode if needed */
+[data-theme="dark"] .footer-links a {
+     color: var(--primary-color); /* Brighter for dark footer */
+}
+
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: var(--link-hover-color);
+}
+[data-theme="dark"] .footer-links a:hover {
+    color: var(--link-hover-color);
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav ul {
+        margin-top: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav ul li {
+        margin: 10px 0;
+    }
+
+    .dropdown .dropbtn {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .dropdown-content {
+        position: static; /* Or relative, adjust as needed */
+        box-shadow: none;
+        border-top: none;
+        background-color: #444; /* Slightly different for visibility */
+    }
+    .dropdown-content a {
+        text-align: center;
+    }
+
+
+    #hero h1 {
+        font-size: 2.2rem;
+    }
+
+    #hero p {
+        font-size: 1.2rem;
+    }
+
+    .widget-grid {
+        grid-template-columns: 1fr; /* Stack widgets on smaller screens */
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr; /* Stack blog posts */
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr; /* Stack service items */
+    }
+
+    #contact-form {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    #hero h1 {
+        font-size: 1.8rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    header .logo a {
+        font-size: 1.5rem;
+    }
+    header nav ul li a {
+        font-size: 0.9rem;
+    }
+}
+
+/* Basic styles for landing pages if they don't have their own specific ones */
+.landing-page-content {
+    padding: 2rem 0;
+    min-height: 60vh; /* Ensure footer is pushed down */
+}
+
+.landing-page-content .container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.landing-page-content h1 {
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.landing-page-content p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* Full Blog Post Styles */
+.blog-post-full .container {
+    max-width: 800px; /* Optimal reading width */
+    background-color: var(--card-bg);
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--card-box-shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-post-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.blog-post-header .post-meta {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+.blog-post-full .featured-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.blog-content h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--widget-border);
+    padding-bottom: 0.5rem;
+}
+
+.blog-content p {
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+.blog-content ul, .blog-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 25px;
+}
+
+.blog-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.blog-content blockquote {
+    border-left: 4px solid var(--primary-color);
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background-color: var(--widget-bg);
+    color: var(--text-color);
+    font-style: italic;
+    border-radius: 0 4px 4px 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.blog-content .inline-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1.5rem auto; /* Center images */
+    display: block;
+    box-shadow: 0 2px 8px var(--widget-box-shadow);
+}
+
+.blog-content a { /* Links within blog content */
+    color: var(--link-color);
+    text-decoration: underline;
+}
+.blog-content a:hover {
+    color: var(--link-hover-color);
+}
+
+.blog-cta { /* Specific CTA button within blog post */
+    display: block;
+    width: fit-content;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+/* Comments Section Placeholder Styles */
+.comments-section {
+    margin-top: 3rem;
+    border-top: 1px solid var(--widget-border);
+    padding-top: 2rem;
+}
+
+.comments-section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.comment {
+    background-color: var(--widget-bg);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--widget-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.comment p {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+}
+.comment small {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+}
+
+.comment-form {
+    margin-top: 2rem;
+}
+.comment-form h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--timer-input-border);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.comment-form input[type="text"]::placeholder,
+.comment-form input[type="email"]::placeholder,
+.comment-form textarea::placeholder {
+    color: var(--secondary-color);
+    opacity: 0.7;
+}
+.comment-form button[type="submit"] {
+    /* Uses .cta-button styles */
+}
+
+/* Ensure blog post specific styles also respect dark theme */
+[data-theme="dark"] .blog-post-full .container {
+    background-color: var(--card-bg); /* Already a variable */
+}
+[data-theme="dark"] .blog-content blockquote {
+    border-left-color: var(--primary-color); /* Already a variable */
+    background-color: var(--widget-bg); /* Already a variable */
+}
+[data-theme="dark"] .comment {
+    background-color: var(--widget-bg); /* Already a variable */
+    border-color: var(--widget-border); /* Already a variable */
+}

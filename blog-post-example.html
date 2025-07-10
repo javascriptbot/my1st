@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Blog Post Title - EstateBiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">EstateBiz</a>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#blog" class="active">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Landing Pages</a>
+                    <div class="dropdown-content">
+                        <a href="landing-real-estate-investing.html">Real Estate Investing</a>
+                        <a href="landing-first-time-home-buyer.html">First-Time Home Buyer</a>
+                        <a href="landing-luxury-properties.html">Luxury Properties</a>
+                        <a href="landing-commercial-real-estate.html">Commercial Real Estate</a>
+                        <a href="landing-property-management.html">Property Management</a>
+                        <a href="landing-starting-a-business.html">Starting Your Business</a>
+                        <a href="landing-business-planning.html">Business Planning</a>
+                        <a href="landing-funding-your-venture.html">Funding Your Venture</a>
+                        <a href="landing-digital-marketing-smb.html">Digital Marketing for SMBs</a>
+                        <a href="landing-scaling-your-business.html">Scaling Your Business</a>
+                    </div>
+                </li>
+                <li><button id="theme-toggle-button" class="theme-toggle-btn">☀️</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="blog-post-full">
+        <div class="container">
+            <article>
+                <header class="blog-post-header">
+                    <h1>The Ultimate Guide to Starting Your Own Business</h1>
+                    <p class="post-meta">Published on <time datetime="2024-03-10">March 10, 2024</time> by Jane Doe</p>
+                    <img src="https://via.placeholder.com/800x400?text=Inspiring+Business+Journey" alt="Blog post featured image" class="featured-image">
+                </header>
+
+                <section class="blog-content">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                    <h2>Section 1: The Idea and Market Research</h2>
+                    <p>Cras ultricies ligula sed magna dictum porta. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+                    <blockquote>
+                        "The secret of getting ahead is getting started." - Mark Twain
+                    </blockquote>
+
+                    <p>Nulla porttitor accumsan tincidunt. Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.</p>
+
+                    <img src="https://via.placeholder.com/600x300?text=Market+Research+Diagram" alt="Market Research" class="inline-image">
+
+                    <h2>Section 2: Planning and Legalities</h2>
+                    <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Donec rutrum congue leo eget malesuada. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Proin eget tortor risus. Sed porttitor lectus nibh.</p>
+                    <ul>
+                        <li>Develop a comprehensive business plan.</li>
+                        <li>Choose a legal structure (LLC, Corporation, etc.).</li>
+                        <li>Register your business and obtain necessary licenses.</li>
+                        <li>Understand your tax obligations.</li>
+                    </ul>
+
+                    <h2>Section 3: Funding and Launch</h2>
+                    <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed magna dictum porta.</p>
+                    <p>For more details on specific funding options, refer to our <a href="landing-funding-your-venture.html">Funding Your Venture</a> page.</p>
+
+                    <a href="index.html#contact" class="cta-button blog-cta">Discuss Your Business Idea</a>
+                </section>
+
+                <section class="comments-section">
+                    <h2>Comments (3)</h2>
+                    <div class="comment">
+                        <p><strong>John Smith:</strong> Great article! Very informative.</p>
+                        <small>March 11, 2024</small>
+                    </div>
+                    <div class="comment">
+                        <p><strong>Alice Green:</strong> Thanks for the tips on market research.</p>
+                        <small>March 12, 2024</small>
+                    </div>
+                    <div class="comment-form">
+                        <h3>Leave a Comment</h3>
+                        <form>
+                            <input type="text" placeholder="Your Name" required>
+                            <input type="email" placeholder="Your Email (won't be published)" required>
+                            <textarea placeholder="Your Comment" rows="5" required></textarea>
+                            <button type="submit" class="cta-button">Post Comment</button>
+                        </form>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 EstateBiz. All rights reserved.</p>
+            <p>Your Partner in Real Estate and Business Success.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
